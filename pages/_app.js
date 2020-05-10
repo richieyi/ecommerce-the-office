@@ -1,6 +1,7 @@
 import React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
+import { CartContextProvider } from '../context/CartContextProvider';
 
 class MyApp extends App {
   render() {
@@ -10,7 +11,9 @@ class MyApp extends App {
         <Head>
           <script src="https://js.stripe.com/v3/" />
         </Head>
-        <Component {...pageProps} />
+        <CartContextProvider>
+          <Component {...pageProps} />
+        </CartContextProvider>
       </>
     );
   }

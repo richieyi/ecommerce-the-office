@@ -1,6 +1,7 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 export default async (req, res) => {
+  // console.log('awef', localStorage.getItem('amount'));
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     line_items: [

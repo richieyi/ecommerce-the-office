@@ -1,21 +1,23 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { CartContext } from '../../context/CartContextProvider';
 
-interface Product {
-  id: number;
-  name: string;
-  height: string;
-  mass: string;
-  hair_color: string;
-  skin_color: string;
-  eye_color: string;
-  gender: string;
-  img: string;
-}
+// interface Product {
+//   id: number;
+//   name: string;
+//   height: string;
+//   mass: string;
+//   hair_color: string;
+//   skin_color: string;
+//   eye_color: string;
+//   gender: string;
+//   img: string;
+//   price: number;
+// }
 
-interface Props {
-  products: Product[];
-}
+// interface Props {
+//   products: Product[];
+// }
 
 const Page = styled.div`
   margin-left: auto;
@@ -43,15 +45,27 @@ const ProductCard = styled.div`
   }
 `;
 
-const Products = (props: Props) => {
+const Products = (props) => {
   const { products } = props;
+  const { items, addItem } = React.useContext(CartContext);
+  console.log('awefawef', items);
 
   const renderProducts = () => {
-    return products.map(({ id, name, img }) => {
+    return products.map(({ id, name, img, price }) => {
       return (
-        <ProductCard key={id}>
+        <ProductCard
+          key={id}
+          onClick={() =>
+            addItem({
+              id,
+              name,
+              price
+            })
+          }
+        >
           {img && <Img src={img} />}
           <div>{name}</div>
+          <div>{`$${price}`}</div>
         </ProductCard>
       );
     });

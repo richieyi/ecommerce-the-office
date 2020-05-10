@@ -8,7 +8,8 @@ export const people = [
     skin_color: 'fair',
     eye_color: 'blue',
     gender: 'male',
-    img: '/static/luke.jpg'
+    img: '/static/luke.jpg',
+    price: 14.99
   },
   {
     id: 2,
@@ -19,7 +20,8 @@ export const people = [
     skin_color: 'gold',
     eye_color: 'yellow',
     gender: 'n/a',
-    img: '/static/c3po.jpg'
+    img: '/static/c3po.jpg',
+    price: 7.99
   },
   {
     id: 3,
@@ -30,7 +32,8 @@ export const people = [
     skin_color: 'white, blue',
     eye_color: 'red',
     gender: 'n/a',
-    img: '/static/r2d2.jpg'
+    img: '/static/r2d2.jpg',
+    price: 21.99
   },
   {
     id: 4,
@@ -41,7 +44,8 @@ export const people = [
     skin_color: 'white',
     eye_color: 'yellow',
     gender: 'male',
-    img: '/static/darth-vader.jpg'
+    img: '/static/darth-vader.jpg',
+    price: 31.99
   },
   {
     id: 5,
@@ -52,7 +56,8 @@ export const people = [
     skin_color: 'light',
     eye_color: 'brown',
     gender: 'female',
-    img: '/static/leia.jpg'
+    img: '/static/leia.jpg',
+    price: 14.99
   },
   {
     id: 6,
@@ -63,6 +68,7 @@ export const people = [
     skin_color: 'fair',
     eye_color: 'blue-gray',
     gender: 'male',
-    img: '/static/obi-wan.jpg'
+    img: '/static/obi-wan.jpg',
+    price: 57.99
   }
 ];
