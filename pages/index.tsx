@@ -3,41 +3,40 @@ import useSWR from 'swr';
 import React from 'react';
 import Products from '../components/Products';
 import NavBar from '../components/NavBar';
-import { auth } from '../firebase';
+// import { auth } from '../firebase';
 
 const fetcher = (url: any) => fetch(url).then((res) => res.json());
 
 export default function Home() {
-  const [loading, setLoading] = React.useState<boolean>(true);
-  const [user, setUser] = React.useState<any>(null);
+  // const [loading, setLoading] = React.useState<boolean>(true);
+  // const [user, setUser] = React.useState<any>(null);
 
   const { data, error } = useSWR('/api/products', fetcher);
-  // console.log('data', data);
-  console.log('here', process.env.FIREBASE_API_KEY);
 
-  React.useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      setLoading(false);
-      if (user) {
-        setUser(user);
-      }
-    });
-  }, []);
+  // React.useEffect(() => {
+  //   auth.onAuthStateChanged((user) => {
+  //     setLoading(false);
+  //     if (user) {
+  //       setUser(user);
+  //     }
+  //   });
+  // }, []);
 
-  if (!data || loading) return <div>Loading...</div>;
+  if (!data) return <div>Loading...</div>;
 
-  const handleLogout = (): void => {
-    auth.signOut().then(() => setUser(null));
-  };
+  // const handleLogout = (): void => {
+  //   auth.signOut().then(() => setUser(null));
+  // };
 
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
+        <title>Star Wars Funko Pops</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <NavBar user={user} handleLogout={handleLogout} />
+        {/* <NavBar user={user} handleLogout={handleLogout} /> */}
+        <NavBar />
         <Products products={data} />
         <div>hello world</div>
       </main>

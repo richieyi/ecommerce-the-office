@@ -1,23 +1,23 @@
-import React from 'react';
-import { useRouter } from 'next/router';
-import { auth } from '../firebase';
+// import React from 'react';
+// import { useRouter } from 'next/router';
+// import { auth } from '../firebase';
 
-import EmailPasswordForm from '../components/EmailPasswordForm';
+// import EmailPasswordForm from '../components/EmailPasswordForm';
 
-const SignUp = (): JSX.Element => {
-  const router = useRouter();
+// const SignUp = (): JSX.Element => {
+//   const router = useRouter();
 
-  const handleSubmit = (email: string, password: string): void => {
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((res) => {
-        console.log(res);
-        router.push('/');
-      })
-      .catch((err) => console.log(err));
-  };
+//   const handleSubmit = (email: string, password: string): void => {
+//     auth
+//       .createUserWithEmailAndPassword(email, password)
+//       .then((res) => {
+//         console.log(res);
+//         router.push('/');
+//       })
+//       .catch((err) => console.log(err));
+//   };
 
-  return <EmailPasswordForm onSubmit={handleSubmit} buttonText="Sign Up" />;
-};
+//   return <EmailPasswordForm onSubmit={handleSubmit} buttonText="Sign Up" />;
+// };
 
-export default SignUp;
+// export default SignUp;
