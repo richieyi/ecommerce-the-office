@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-unfetch';
+import NavBar from '../components/NavBar';
 import { useState, useEffect } from 'react';
-import { CartContext } from '../../context/CartContextProvider';
+import { CartContext } from '../context/CartContextProvider';
 
 export async function fetchPostJSON(url, data) {
   try {
@@ -24,9 +25,9 @@ export async function fetchPostJSON(url, data) {
   }
 }
 
-const Checkout = (props) => {
+const Cart = () => {
   const [stripe, setStripe] = useState(null);
-  const { items, addItem } = React.useContext(CartContext);
+  const { items } = React.useContext(CartContext);
   console.log('checkout', items);
 
   useEffect(
@@ -37,7 +38,8 @@ const Checkout = (props) => {
   const goToCheckout = async (e) => {
     e.preventDefault();
     const response = await fetchPostJSON('/api/build-checkout', {
-      amount: 2500
+      amount: 2500,
+      items
     });
     const { error } = await stripe
       .redirectToCheckout({
@@ -50,7 +52,29 @@ const Checkout = (props) => {
     console.warn(error.message);
   };
 
-  return <button onClick={goToCheckout}>Pay</button>;
+  const renderCart = () => {
+    if (items.length === 0) {
+      return <h3>Looking a little empty...</h3>;
+    }
+
+    return items.map((item) => {
+      return (
+        <div key={item.id}>
+          <p>{item.name}</p>
+          <p>{item.price}</p>
+          <p>{item.quantity}</p>
+        </div>
+      );
+    });
+  };
+
+  return (
+    <div>
+      <NavBar />
+      {renderCart()}
+      <button onClick={goToCheckout}>Pay</button>
+    </div>
+  );
 };
 
-export default Checkout;
+export default Cart;

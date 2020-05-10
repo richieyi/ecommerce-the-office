@@ -59,7 +59,10 @@ const Products = (props) => {
             addItem({
               id,
               name,
-              price,
+              description: '',
+              images: [],
+              amount: price,
+              current: 'usd',
               quantity: 1
             })
           }
