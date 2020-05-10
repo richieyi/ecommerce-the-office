@@ -21,6 +21,9 @@ const NavBar = (props: Props): JSX.Element => {
           <a>Sign Up</a>
         </Link>
       )}
+      <Link href="/cart">
+        <a>Cart</a>
+      </Link>
       {user && <button onClick={handleLogout}>Log Out</button>}
     </nav>
   );

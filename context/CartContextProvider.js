@@ -3,7 +3,7 @@ import React from 'react';
 export const CartContext = React.createContext();
 
 export const CartContextProvider = (props) => {
-  const [items, setItems] = React.useState(['test']);
+  const [items, setItems] = React.useState([]);
 
   const addItem = (item) => {
     setItems([...items, item]);

@@ -1,7 +1,6 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 export default async (req, res) => {
-  // console.log('awef', localStorage.getItem('amount'));
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     line_items: [
@@ -9,9 +8,9 @@ export default async (req, res) => {
         name: 'T-shirt',
         description: 'Comfortable cotton t-shirt',
         images: ['https://example.com/t-shirt.png'],
-        amount: 5500,
+        amount: req.body.amount,
         currency: 'usd',
-        quantity: 1
+        quantity: 2
       }
     ],
     success_url: 'https://example.com/success',
