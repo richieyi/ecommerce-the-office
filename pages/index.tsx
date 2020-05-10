@@ -1,11 +1,18 @@
 import Head from 'next/head';
+import useSWR from 'swr';
 import React from 'react';
+import Products from '../components/Products';
 import NavBar from '../components/NavBar';
 import { auth } from '../firebase';
+
+const fetcher = (url: any) => fetch(url).then((res) => res.json());
 
 export default function Home() {
   const [loading, setLoading] = React.useState<boolean>(true);
   const [user, setUser] = React.useState<any>(null);
+
+  const { data, error } = useSWR('/api/products', fetcher);
+  console.log(data);
 
   React.useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -30,6 +37,8 @@ export default function Home() {
       </Head>
       <main>
         <NavBar user={user} handleLogout={handleLogout} />
+        <Products products={data} />
+        <div>hello world</div>
       </main>
       <footer>
         <a

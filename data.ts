@@ -7,7 +7,8 @@ export const people = [
     hair_color: 'blond',
     skin_color: 'fair',
     eye_color: 'blue',
-    gender: 'male'
+    gender: 'male',
+    img: '/static/luke.jpg'
   },
   {
     id: 2,
@@ -17,7 +18,8 @@ export const people = [
     hair_color: 'n/a',
     skin_color: 'gold',
     eye_color: 'yellow',
-    gender: 'n/a'
+    gender: 'n/a',
+    img: '/static/c3po.jpg'
   },
   {
     id: 3,
@@ -27,7 +29,8 @@ export const people = [
     hair_color: 'n/a',
     skin_color: 'white, blue',
     eye_color: 'red',
-    gender: 'n/a'
+    gender: 'n/a',
+    img: '/static/r2d2.jpg'
   },
   {
     id: 4,
@@ -37,7 +40,8 @@ export const people = [
     hair_color: 'none',
     skin_color: 'white',
     eye_color: 'yellow',
-    gender: 'male'
+    gender: 'male',
+    img: '/static/darth-vader.jpg'
   },
   {
     id: 5,
@@ -47,56 +51,18 @@ export const people = [
     hair_color: 'brown',
     skin_color: 'light',
     eye_color: 'brown',
-    gender: 'female'
+    gender: 'female',
+    img: '/static/leia.jpg'
   },
   {
     id: 6,
-    name: 'Owen Lars',
-    height: '178',
-    mass: '120',
-    hair_color: 'brown, grey',
-    skin_color: 'light',
-    eye_color: 'blue',
-    gender: 'male'
-  },
-  {
-    id: 7,
-    name: 'Beru Whitesun lars',
-    height: '165',
-    mass: '75',
-    hair_color: 'brown',
-    skin_color: 'light',
-    eye_color: 'blue',
-    gender: 'female'
-  },
-  {
-    id: 8,
-    name: 'R5-D4',
-    height: '97',
-    mass: '32',
-    hair_color: 'n/a',
-    skin_color: 'white, red',
-    eye_color: 'red',
-    gender: 'n/a'
-  },
-  {
-    id: 9,
-    name: 'Biggs Darklighter',
-    height: '183',
-    mass: '84',
-    hair_color: 'black',
-    skin_color: 'light',
-    eye_color: 'brown',
-    gender: 'male'
-  },
-  {
-    id: 10,
     name: 'Obi-Wan Kenobi',
     height: '182',
     mass: '77',
     hair_color: 'auburn, white',
     skin_color: 'fair',
     eye_color: 'blue-gray',
-    gender: 'male'
+    gender: 'male',
+    img: '/static/obi-wan.jpg'
   }
 ];
