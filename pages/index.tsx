@@ -38,7 +38,6 @@ export default function Home() {
         {/* <NavBar user={user} handleLogout={handleLogout} /> */}
         <NavBar />
         <Products products={data} />
-        <div>hello world</div>
       </main>
       <footer>
         <a

@@ -1,74 +1,68 @@
-export const people = [
+export const products = [
   {
     id: 1,
-    name: 'Luke Skywalker',
-    height: '172',
-    mass: '77',
-    hair_color: 'blond',
-    skin_color: 'fair',
-    eye_color: 'blue',
-    gender: 'male',
-    img: '/static/luke.jpg',
-    price: 14.99
+    name: 'Classy Santa',
+    img: '/static/classy-santa.png',
+    price: 8
   },
   {
     id: 2,
-    name: 'C-3PO',
-    height: '167',
-    mass: '75',
-    hair_color: 'n/a',
-    skin_color: 'gold',
-    eye_color: 'yellow',
-    gender: 'n/a',
-    img: '/static/c3po.jpg',
-    price: 7.99
+    name: 'Banjo Andy',
+    img: '/static/banjo-andy-bernard.png',
+    price: 23
   },
   {
     id: 3,
-    name: 'R2-D2',
-    height: '96',
-    mass: '32',
-    hair_color: 'n/a',
-    skin_color: 'white, blue',
-    eye_color: 'red',
-    gender: 'n/a',
-    img: '/static/r2d2.jpg',
-    price: 21.99
+    name: 'Jello Dwight',
+    img: '/static/dwight.png',
+    price: 19
   },
   {
     id: 4,
-    name: 'Darth Vader',
-    height: '202',
-    mass: '136',
-    hair_color: 'none',
-    skin_color: 'white',
-    eye_color: 'yellow',
-    gender: 'male',
-    img: '/static/darth-vader.jpg',
-    price: 31.99
+    name: 'Pam Beesly',
+    img: '/static/pam.png',
+    price: 17
   },
   {
     id: 5,
-    name: 'Leia Organa',
-    height: '150',
-    mass: '49',
-    hair_color: 'brown',
-    skin_color: 'light',
-    eye_color: 'brown',
-    gender: 'female',
-    img: '/static/leia.jpg',
-    price: 14.99
+    name: 'Chili Kevin',
+    img: '/static/chili-kevin.png',
+    price: 20
   },
   {
     id: 6,
-    name: 'Obi-Wan Kenobi',
-    height: '182',
-    mass: '77',
-    hair_color: 'auburn, white',
-    skin_color: 'fair',
-    eye_color: 'blue-gray',
-    gender: 'male',
-    img: '/static/obi-wan.jpg',
-    price: 57.99
+    name: 'Fashion Kelly',
+    img: '/static/kelly.png',
+    price: 12
+  },
+  {
+    id: 7,
+    name: 'Casual Meredith',
+    img: '/static/meredith-dress.png',
+    price: 11
+  },
+  {
+    id: 8,
+    name: 'Wilderness Michael',
+    img: '/static/survival-michael.png',
+    price: 40
+  },
+  {
+    id: 9,
+    name: 'Recyclops',
+    img: '/static/recyclops.png',
+    price: 21
+  },
+  {
+    id: 10,
+    name: 'Darryl',
+    img: '/static/darryl.png',
+    price: 34
+  },
+  {
+    id: 11,
+    name: 'Goldenface Jim',
+    img: '/static/goldenface.png',
+    price: 18
   }
 ];
