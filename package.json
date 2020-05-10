@@ -10,11 +10,15 @@
   "dependencies": {
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
+    "@stripe/react-stripe-js": "^1.1.2",
+    "@stripe/stripe-js": "^1.5.0",
     "dotenv": "^8.2.0",
     "firebase": "^7.14.3",
+    "isomorphic-unfetch": "^3.0.0",
     "next": "9.3.6",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "stripe": "^8.50.0",
     "swr": "^0.2.0"
   },
   "devDependencies": {

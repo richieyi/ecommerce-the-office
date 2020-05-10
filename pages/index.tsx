@@ -12,7 +12,8 @@ export default function Home() {
   const [user, setUser] = React.useState<any>(null);
 
   const { data, error } = useSWR('/api/products', fetcher);
-  console.log(data);
+  // console.log('data', data);
+  console.log('here', process.env.FIREBASE_API_KEY);
 
   React.useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -23,7 +24,7 @@ export default function Home() {
     });
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (!data || loading) return <div>Loading...</div>;
 
   const handleLogout = (): void => {
     auth.signOut().then(() => setUser(null));
