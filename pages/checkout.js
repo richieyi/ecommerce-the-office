@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-unfetch';
 import { useState, useEffect } from 'react';
+import { CartContext } from '../../context/CartContextProvider';
 
 export async function fetchPostJSON(url, data) {
   try {
@@ -25,6 +26,8 @@ export async function fetchPostJSON(url, data) {
 
 const Checkout = (props) => {
   const [stripe, setStripe] = useState(null);
+  const { items, addItem } = React.useContext(CartContext);
+  console.log('checkout', items);
 
   useEffect(
     () => setStripe(window.Stripe(process.env.STRIPE_PUBLISHABLE_KEY)),

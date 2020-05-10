@@ -13,13 +13,13 @@ export const products = [
   },
   {
     id: 3,
-    name: 'Jello Dwight',
-    img: '/static/dwight.png',
+    name: 'Belsnickel Dwight',
+    img: '/static/belsnickel.png',
     price: 19
   },
   {
     id: 4,
-    name: 'Pam Beesly',
+    name: 'Pam',
     img: '/static/pam.png',
     price: 17
   },
@@ -64,5 +64,11 @@ export const products = [
     name: 'Goldenface Jim',
     img: '/static/goldenface.png',
     price: 18
+  },
+  {
+    id: 12,
+    name: 'Hay King Dwight',
+    img: '/static/hay-king.png',
+    price: 29
   }
 ];

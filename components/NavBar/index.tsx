@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { CartContext } from '../../context/CartContextProvider';
 
 interface Props {
   user?: any;
@@ -7,6 +8,7 @@ interface Props {
 }
 
 const NavBar = (props: Props): JSX.Element => {
+  const { count } = React.useContext(CartContext);
   // const { user, handleLogout } = props;
 
   // return (
@@ -29,8 +31,11 @@ const NavBar = (props: Props): JSX.Element => {
   // );
   return (
     <nav>
+      <Link href="/">
+        <a>Home</a>
+      </Link>
       <Link href="/cart">
-        <a>Cart</a>
+        <a>{`Cart (${count})`}</a>
       </Link>
     </nav>
   );

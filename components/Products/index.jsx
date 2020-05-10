@@ -36,7 +36,7 @@ const Img = styled.img`
 
 const ProductCard = styled.div`
   width: 200px;
-  height: 400px;
+  height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -48,7 +48,7 @@ const ProductCard = styled.div`
 const Products = (props) => {
   const { products } = props;
   const { items, addItem } = React.useContext(CartContext);
-  console.log('awefawef', items);
+  console.log('items', items);
 
   const renderProducts = () => {
     return products.map(({ id, name, img, price }) => {
@@ -59,7 +59,8 @@ const Products = (props) => {
             addItem({
               id,
               name,
-              price
+              price,
+              quantity: 1
             })
           }
         >
