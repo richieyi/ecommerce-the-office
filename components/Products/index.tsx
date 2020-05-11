@@ -3,30 +3,43 @@ import styled from '@emotion/styled';
 import { CartContext } from '../../context/CartContextProvider';
 import { formatAmount } from '../../utils/amount-helpers';
 
-const Page = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-`;
-
 const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 25px;
+  grid-auto-rows: minmax(100px, auto);
+
+  @media only screen and (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 const Img = styled.img`
-  max-width: 30%;
-  min-width: 200px;
+  max-width: 75%;
 `;
 
 const ProductCard = styled.div`
-  width: 200px;
-  height: 250px;
+  max-width: 350px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  align-items: center;
+  padding: 15px 10px;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.2s;
+  line-height: 1.5;
+  text-align: center;
+
   &:hover {
     cursor: pointer;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.2s;
   }
+`;
+
+const Price = styled.span`
+  color: #979797;
 `;
 
 interface Product {
@@ -42,7 +55,7 @@ interface Props {
 
 const Products = (props: Props) => {
   const { products } = props;
-  const { items, addItem } = React.useContext(CartContext);
+  const { addItem } = React.useContext(CartContext);
 
   const renderProducts = () => {
     return products.map(({ id, name, img, amount }) => {
@@ -60,17 +73,15 @@ const Products = (props: Props) => {
         >
           {img && <Img src={img} />}
           <div>{name}</div>
-          <div>{`${formatAmount(amount)}`}</div>
+          <div>
+            <Price>{`${formatAmount(amount)}`}</Price>
+          </div>
         </ProductCard>
       );
     });
   };
 
-  return (
-    <Page>
-      <Container>{renderProducts()}</Container>
-    </Page>
-  );
+  return <Container>{renderProducts()}</Container>;
 };
 
 export default Products;

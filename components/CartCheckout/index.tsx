@@ -6,7 +6,10 @@ import { fetchPostJSON } from '../../utils/api-helpers';
 import { formatAmount } from '../../utils/amount-helpers';
 
 const Container = styled.div`
-  min-width: 300px;
+  min-width: 250px;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const ListContainer = styled.ul`

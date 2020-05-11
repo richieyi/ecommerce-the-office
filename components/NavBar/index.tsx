@@ -1,6 +1,26 @@
 import React from 'react';
+import styled from '@emotion/styled';
 import Link from 'next/link';
 import { CartContext } from '../../context/CartContextProvider';
+
+const Nav = styled.nav`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+const Header = styled.h1`
+  margin: unset;
+`;
+
+const Anchor = styled.a`
+  text-decoration: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 interface Props {
   user?: any;
@@ -30,14 +50,16 @@ const NavBar = (props: Props): JSX.Element => {
   //   </nav>
   // );
   return (
-    <nav>
+    <Nav>
       <Link href="/">
-        <a>Home</a>
+        <Anchor>
+          <Header>The Office Funko Pops</Header>
+        </Anchor>
       </Link>
       <Link href="/cart">
-        <a>{`Cart (${count})`}</a>
+        <Anchor>{`Cart (${count})`}</Anchor>
       </Link>
-    </nav>
+    </Nav>
   );
 };
 

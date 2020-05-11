@@ -22,7 +22,7 @@ const HomePage: NextPage = () => {
   //   });
   // }, []);
 
-  if (!data) return <div>Loading...</div>;
+  if (!data) return <div />;
 
   // const handleLogout = (): void => {
   //   auth.signOut().then(() => setUser(null));
