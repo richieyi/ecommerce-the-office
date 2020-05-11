@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { CartContext } from '../../context/CartContextProvider';
+import { formatAmount } from '../../utils/amount-helpers';
 
 const Page = styled.div`
   margin-left: auto;
@@ -59,7 +60,7 @@ const Products = (props: Props) => {
         >
           {img && <Img src={img} />}
           <div>{name}</div>
-          <div>{`$${amount}`}</div>
+          <div>{`${formatAmount(amount)}`}</div>
         </ProductCard>
       );
     });

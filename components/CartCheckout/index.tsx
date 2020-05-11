@@ -1,30 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import fetch from 'isomorphic-unfetch';
 import { useStripe } from '@stripe/react-stripe-js';
 import { CartContext } from '../../context/CartContextProvider';
-
-export async function fetchPostJSON(url: string, data?: {}) {
-  try {
-    // Default options are marked with *
-    const response = await fetch(url, {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      mode: 'cors', // no-cors, *cors, same-origin
-      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'same-origin', // include, *same-origin, omit
-      headers: {
-        'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      redirect: 'follow', // manual, *follow, error
-      referrerPolicy: 'no-referrer', // no-referrer, *client
-      body: JSON.stringify(data || {}) // body data type must match "Content-Type" header
-    });
-    return await response.json(); // parses JSON response into native JavaScript objects
-  } catch (err) {
-    throw new Error(err.message);
-  }
-}
+import { fetchPostJSON } from '../../utils/api-helpers';
+import { formatAmount } from '../../utils/amount-helpers';
 
 const Container = styled.div`
   min-width: 300px;
@@ -63,7 +42,7 @@ const CartCheckout = () => {
           <div>
             <LineContainer>
               <span>{item.name}</span>
-              <span>{`$${item.amount} each`}</span>
+              <span>{`${formatAmount(item.amount)} each`}</span>
             </LineContainer>
             <LineContainer>
               <span>
@@ -75,7 +54,9 @@ const CartCheckout = () => {
                   +
                 </button>
               </span>
-              <span>{`$${item.amount * item.quantity} total`}</span>
+              <span>{`${formatAmount(
+                item.amount * item.quantity
+              )} total`}</span>
             </LineContainer>
           </div>
         </ListItem>
@@ -89,6 +70,7 @@ const CartCheckout = () => {
       delete item.id;
       return {
         ...item,
+        amount: item.amount * 100,
         description: 'Funko pop',
         images: [],
         currency: 'usd'
