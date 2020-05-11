@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import IconButton from '@material-ui/core/IconButton';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { CartContext } from '../../context/CartContextProvider';
 import { formatAmount } from '../../utils/amount-helpers';
 
@@ -19,27 +21,39 @@ const Img = styled.img`
 `;
 
 const ProductCard = styled.div`
+  background: white;
   max-width: 350px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  padding: 15px 10px;
+  padding: 15px 20px;
   border-radius: 4px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.2s;
   line-height: 1.5;
-  text-align: center;
-
-  &:hover {
-    cursor: pointer;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.2s;
-  }
 `;
 
+const ProductInfo = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
+const ProductInfoLeft = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+const ProductInfoRight = styled.div`
+  display: flex;
+  align-items: flex-end;
+`;
+const Name = styled.div`
+  font-weight: bold;
+`;
 const Price = styled.span`
   color: #979797;
+  font-size: 14px;
 `;
 
 interface Product {
@@ -60,22 +74,32 @@ const Products = (props: Props) => {
   const renderProducts = () => {
     return products.map(({ id, name, img, amount }) => {
       return (
-        <ProductCard
-          key={id}
-          onClick={() =>
-            addItem({
-              id,
-              name,
-              amount,
-              quantity: 1
-            })
-          }
-        >
+        <ProductCard key={id}>
           {img && <Img src={img} />}
-          <div>{name}</div>
-          <div>
-            <Price>{`${formatAmount(amount)}`}</Price>
-          </div>
+          <ProductInfo>
+            <ProductInfoLeft>
+              <Name>{name}</Name>
+              <div>
+                <Price>{`${formatAmount(amount)}`}</Price>
+              </div>
+            </ProductInfoLeft>
+            <ProductInfoRight>
+              <IconButton
+                size="small"
+                aria-label="add to cart"
+                onClick={() =>
+                  addItem({
+                    id,
+                    name,
+                    amount,
+                    quantity: 1
+                  })
+                }
+              >
+                <AddShoppingCartIcon />
+              </IconButton>
+            </ProductInfoRight>
+          </ProductInfo>
         </ProductCard>
       );
     });

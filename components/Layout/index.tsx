@@ -43,6 +43,7 @@ const Layout: React.FunctionComponent<Props> = ({
     <style jsx global>{`
       html,
       body {
+        background: #eee;
         padding: 0;
         margin: 0;
         font-family: 'Roboto', -apple-system, BlinkMacSystemFont, Segoe UI,

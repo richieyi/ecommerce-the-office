@@ -12,29 +12,46 @@ import { fetchPostJSON } from '../../utils/api-helpers';
 import { formatAmount } from '../../utils/amount-helpers';
 
 const Container = styled.div`
+  margin-top: 50px;
   min-width: 300px;
   max-width: 500px;
   display: flex;
   flex-direction: column;
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
 
   @media only screen and (max-width: 400px) {
     min-width: 250px;
   }
 `;
 
-const ListContainer = styled.ul`
+const ListContainer = styled.div`
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 15px 25px;
+`;
+
+const TotalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 15px 25px;
+`;
+
+const List = styled.ul`
   list-style: none;
   padding: unset;
+  margin: 0 0 25px 0;
 `;
 
 const LineContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const ListItem = styled.li`
-  margin-bottom: 10px;
-  line-height: 1.4;
+  margin-bottom: 20px;
 `;
 
 const CartMainText = styled.span`
@@ -94,23 +111,26 @@ const CartCheckout = () => {
             <LineContainer>
               <CartSubText>
                 {`Qty: ${item.quantity}`}
-                <IconButton size="small" aria-label="subtract quantity">
-                  <RemoveIcon
-                    onClick={() => decrementItemQuantity(item.id)}
-                    color="primary"
-                  />
+                <IconButton
+                  size="small"
+                  aria-label="subtract quantity"
+                  onClick={() => decrementItemQuantity(item.id)}
+                >
+                  <RemoveIcon color="primary" />
                 </IconButton>
-                <IconButton size="small" aria-label="add quantity">
-                  <AddIcon
-                    onClick={() => incrementItemQuantity(item.id)}
-                    color="primary"
-                  />
+                <IconButton
+                  size="small"
+                  aria-label="add quantity"
+                  onClick={() => incrementItemQuantity(item.id)}
+                >
+                  <AddIcon color="primary" />
                 </IconButton>
-                <IconButton size="small" aria-label="remove item">
-                  <DeleteIcon
-                    onClick={() => removeItem(item.id)}
-                    color="error"
-                  />
+                <IconButton
+                  size="small"
+                  aria-label="remove item"
+                  onClick={() => removeItem(item.id)}
+                >
+                  <DeleteIcon color="error" />
                 </IconButton>
               </CartSubText>
               <CartSubText>{`${formatAmount(item.amount)} each`}</CartSubText>
@@ -143,17 +163,23 @@ const CartCheckout = () => {
     console.warn(error.message);
   };
 
-  return (
-    <Container>
-      <ListContainer>{renderCart()}</ListContainer>
-      {items.length > 0 && (
+  const renderTotalArea = () => {
+    return (
+      <TotalContainer>
         <Total>{`Total: ${formatAmount(renderTotal())}`}</Total>
-      )}
-      {items.length > 0 && (
         <Button variant="contained" color="primary" onClick={handleCheckout}>
           Check Out
         </Button>
-      )}
+      </TotalContainer>
+    );
+  };
+
+  return (
+    <Container>
+      <ListContainer>
+        <List>{renderCart()}</List>
+      </ListContainer>
+      {items.length > 0 && renderTotalArea()}
     </Container>
   );
 };
