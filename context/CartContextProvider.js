@@ -44,12 +44,13 @@ export const CartContextProvider = (props) => {
     setCount(count + 1);
   };
 
-  const removeItem = (idx) => {
+  const removeItem = (id) => {
+    const idx = items.findIndex((item) => item.id === id);
     const newItems = [...items];
     newItems.splice(idx, 1);
     localStorage.setItem('cart', JSON.stringify([...newItems]));
     setItems([...newItems]);
-    setCount(count - 1);
+    setCount(newItems.length);
   };
 
   const incrementItemQuantity = (id) => {
@@ -68,7 +69,7 @@ export const CartContextProvider = (props) => {
     if (idx >= 0) {
       const newItems = [...items];
       if (newItems[idx].quantity === 1) {
-        removeItem(idx);
+        removeItem(id);
       } else {
         newItems[idx].quantity -= 1;
         localStorage.setItem('cart', JSON.stringify([...newItems]));
@@ -85,7 +86,8 @@ export const CartContextProvider = (props) => {
         items,
         addItem,
         incrementItemQuantity,
-        decrementItemQuantity
+        decrementItemQuantity,
+        removeItem
       }}
     >
       {props.children}

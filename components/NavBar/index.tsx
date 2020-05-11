@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import Badge from '@material-ui/core/Badge';
 import { CartContext } from '../../context/CartContextProvider';
 
 const Nav = styled.nav`
@@ -57,7 +59,11 @@ const NavBar = (props: Props): JSX.Element => {
         </Anchor>
       </Link>
       <Link href="/cart">
-        <Anchor>{`Cart (${count})`}</Anchor>
+        <Anchor>
+          <Badge badgeContent={count} color="primary">
+            <ShoppingCartIcon />
+          </Badge>
+        </Anchor>
       </Link>
     </Nav>
   );

@@ -1,15 +1,25 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { useStripe } from '@stripe/react-stripe-js';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 import { CartContext } from '../../context/CartContextProvider';
 import { fetchPostJSON } from '../../utils/api-helpers';
 import { formatAmount } from '../../utils/amount-helpers';
 
 const Container = styled.div`
-  min-width: 250px;
+  min-width: 300px;
   max-width: 500px;
   display: flex;
   flex-direction: column;
+
+  @media only screen and (max-width: 400px) {
+    min-width: 250px;
+  }
 `;
 
 const ListContainer = styled.ul`
@@ -24,6 +34,28 @@ const LineContainer = styled.div`
 
 const ListItem = styled.li`
   margin-bottom: 10px;
+  line-height: 1.4;
+`;
+
+const CartMainText = styled.span`
+  font-weight: bold;
+`;
+
+const CartSubText = styled.span`
+  color: gray;
+  font-style: italic;
+  font-size: 14px;
+
+  button {
+    margin-left: 2px;
+  }
+`;
+
+const Total = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  font-weight: bold;
+  margin-bottom: 10px;
 `;
 
 const CartCheckout = () => {
@@ -31,8 +63,18 @@ const CartCheckout = () => {
   const {
     items,
     incrementItemQuantity,
-    decrementItemQuantity
+    decrementItemQuantity,
+    removeItem
   } = React.useContext(CartContext);
+
+  const renderTotal = () => {
+    let total = 0;
+    for (let i = 0; i < items.length; i++) {
+      total += items[i].amount * items[i].quantity;
+    }
+
+    return total;
+  };
 
   const renderCart = () => {
     if (items.length === 0) {
@@ -44,22 +86,34 @@ const CartCheckout = () => {
         <ListItem key={item.id}>
           <div>
             <LineContainer>
-              <span>{item.name}</span>
-              <span>{`${formatAmount(item.amount)} each`}</span>
+              <CartMainText>{item.name}</CartMainText>
+              <CartMainText>{`${formatAmount(
+                item.amount * item.quantity
+              )}`}</CartMainText>
             </LineContainer>
             <LineContainer>
-              <span>
+              <CartSubText>
                 {`Qty: ${item.quantity}`}
-                <button onClick={() => decrementItemQuantity(item.id)}>
-                  -
-                </button>
-                <button onClick={() => incrementItemQuantity(item.id)}>
-                  +
-                </button>
-              </span>
-              <span>{`${formatAmount(
-                item.amount * item.quantity
-              )} total`}</span>
+                <IconButton size="small" aria-label="subtract quantity">
+                  <RemoveIcon
+                    onClick={() => decrementItemQuantity(item.id)}
+                    color="primary"
+                  />
+                </IconButton>
+                <IconButton size="small" aria-label="add quantity">
+                  <AddIcon
+                    onClick={() => incrementItemQuantity(item.id)}
+                    color="primary"
+                  />
+                </IconButton>
+                <IconButton size="small" aria-label="remove item">
+                  <DeleteIcon
+                    onClick={() => removeItem(item.id)}
+                    color="error"
+                  />
+                </IconButton>
+              </CartSubText>
+              <CartSubText>{`${formatAmount(item.amount)} each`}</CartSubText>
             </LineContainer>
           </div>
         </ListItem>
@@ -92,7 +146,14 @@ const CartCheckout = () => {
   return (
     <Container>
       <ListContainer>{renderCart()}</ListContainer>
-      {items.length > 0 && <button onClick={handleCheckout}>Check Out</button>}
+      {items.length > 0 && (
+        <Total>{`Total: ${formatAmount(renderTotal())}`}</Total>
+      )}
+      {items.length > 0 && (
+        <Button variant="contained" color="primary" onClick={handleCheckout}>
+          Check Out
+        </Button>
+      )}
     </Container>
   );
 };
