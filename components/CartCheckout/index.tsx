@@ -13,7 +13,7 @@ import { formatAmount } from '../../utils/amount-helpers';
 
 const Container = styled.div`
   margin-top: 50px;
-  min-width: 300px;
+  min-width: 350px;
   max-width: 500px;
   display: flex;
   flex-direction: column;
@@ -75,7 +75,7 @@ const Total = styled.div`
   margin-bottom: 10px;
 `;
 
-const CartCheckout = () => {
+const CartCheckout = (): JSX.Element => {
   const stripe = useStripe();
   const {
     items,
