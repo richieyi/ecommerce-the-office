@@ -3,7 +3,7 @@ import fetch from 'isomorphic-unfetch';
 import { useStripe } from '@stripe/react-stripe-js';
 import { CartContext } from '../../context/CartContextProvider';
 
-export async function fetchPostJSON(url, data) {
+export async function fetchPostJSON(url: string, data?: {}) {
   try {
     // Default options are marked with *
     const response = await fetch(url, {
@@ -34,7 +34,7 @@ const CheckoutForm = () => {
       return <h3>Looking a little empty...</h3>;
     }
 
-    return items.map((item) => {
+    return items.map((item: any) => {
       return (
         <div key={item.id}>
           <p>{item.name}</p>
@@ -45,19 +45,23 @@ const CheckoutForm = () => {
     });
   };
 
-  const goToCheckout = async (e) => {
-    e.preventDefault();
-    const response = await fetchPostJSON('/api/build-checkout', {
-      amount: 2500,
-      items
+  const handleCheckout = async () => {
+    // Stripe API requires specific properties on each item
+    const modifiedItems = items.map((item: any) => {
+      delete item.id;
+      return {
+        ...item,
+        description: 'Funko pop',
+        images: [],
+        currency: 'usd'
+      };
     });
-    const { error } = await stripe
-      .redirectToCheckout({
-        sessionId: response.id
-      })
-      .then(function (result) {
-        console.log(result.error.message);
-      });
+    const response = await fetchPostJSON('/api/checkout', {
+      items: modifiedItems
+    });
+    const { error } = await stripe!.redirectToCheckout({
+      sessionId: response.id
+    });
 
     console.warn(error.message);
   };
@@ -65,7 +69,7 @@ const CheckoutForm = () => {
   return (
     <>
       {renderCart()}
-      <button onClick={goToCheckout}>Pay</button>
+      <button onClick={handleCheckout}>Check Out</button>
     </>
   );
 };

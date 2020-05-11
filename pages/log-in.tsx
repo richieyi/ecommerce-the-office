@@ -23,9 +23,10 @@
 // export default LogIn;
 
 import React from 'react';
+import { NextPage } from 'next';
 
-const LogIn = () => {
+const LogInPage: NextPage = () => {
   return <div />;
 };
 
-export default LogIn;
+export default LogInPage;

@@ -23,9 +23,10 @@
 // export default SignUp;
 
 import React from 'react';
+import { NextPage } from 'next';
 
-const SignUp = () => {
+const SignUpPage: NextPage = () => {
   return <div />;
 };
 
-export default SignUp;
+export default SignUpPage;

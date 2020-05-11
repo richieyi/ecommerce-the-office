@@ -1,5 +1,6 @@
-import { products } from '../../../data';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { products } from '../../../products-data';
 
-export default (req: any, res: any): void => {
+export default (req: NextApiRequest, res: NextApiResponse): void => {
   res.status(200).json(products);
 };
