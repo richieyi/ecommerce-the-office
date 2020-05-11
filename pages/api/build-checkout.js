@@ -20,9 +20,17 @@ export default async (req, res) => {
         name: 'Banjo Andy',
         description: 'Comfortable cotton',
         images: [],
-        amount: 23,
+        amount: 2360,
         currency: 'usd',
         quantity: 4
+      },
+      {
+        name: 'Belsnickel Dwight',
+        description: 'Comfortable cotton',
+        images: [],
+        amount: 2300,
+        currency: 'usd',
+        quantity: 2
       }
     ],
     success_url: 'https://example.com/success',
