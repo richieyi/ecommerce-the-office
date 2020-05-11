@@ -3,31 +3,79 @@ import React from 'react';
 export const CartContext = React.createContext();
 
 export const CartContextProvider = (props) => {
-  const [items, setItems] = React.useState([]);
-  // Faster to increment count than
-  // Iterating and adding up quantity each time
-  // For cart qty number
+  // Faster to increment count than iterating and
+  // adding up quantity each time for cart qty
   const [count, setCount] = React.useState(0);
+  const [items, setItems] = React.useState([]);
 
-  // Hashmap with ID and quantity vs array?
-  // Hashmap pros: easy to incremenet qty
-  // Hashmap cons: need to filter in cart for data
-  // Array props: easy to push into array
-  // Array cons: need to filter in cart for qty data
+  React.useEffect(() => {
+    // Check to see if window exists for localStorage
+    if (typeof window !== 'undefined') {
+      // Persistent cart
+      const items = localStorage.getItem('cart');
+      if (items) {
+        const parsedItems = JSON.parse(items);
+        setItems(parsedItems);
+
+        let count = 0;
+        for (let i = 0; i < parsedItems.length; i++) {
+          count += parsedItems[i].quantity;
+        }
+        setCount(count);
+      }
+    }
+  }, []);
+
+  // Data type choices: hashmap with id w/ quantity vs array?
   // Result -> array because stripe requires array of items with qty
-  // Constant time with cart.length O(1) > linear time with Object.entries(cart) O(n)
-  // Constant time to add item and get cart length
-  // Also need arrays to render cart w/ qty and for stripe checkout
+  // and to easily render cart items w/ qty
   const addItem = (newItem) => {
-    const idx = items.findIndex((item) => item.id === newItem.id);
+    const idx = items.findIndex((item) => item.id === newItem.id); // O(n)
+    if (idx >= 0) {
+      const newItems = [...items];
+      newItems[idx].quantity += 1; // O(n)
+      localStorage.setItem('cart', JSON.stringify([...newItems]));
+      setItems([...newItems]);
+    } else {
+      setItems([...items, newItem]); // O(1)
+      localStorage.setItem('cart', JSON.stringify([...items, newItem]));
+    }
+    // => O(n^2) or O(n)
+    setCount(count + 1);
+  };
+
+  const removeItem = (idx) => {
+    const newItems = [...items];
+    newItems.splice(idx, 1);
+    localStorage.setItem('cart', JSON.stringify([...newItems]));
+    setItems([...newItems]);
+    setCount(count - 1);
+  };
+
+  const incrementItemQuantity = (id) => {
+    const idx = items.findIndex((item) => item.id === id);
     if (idx >= 0) {
       const newItems = [...items];
       newItems[idx].quantity += 1;
+      localStorage.setItem('cart', JSON.stringify([...newItems]));
       setItems([...newItems]);
-    } else {
-      setItems([...items, newItem]);
+      setCount(count + 1);
     }
-    setCount(count + 1);
+  };
+
+  const decrementItemQuantity = (id) => {
+    const idx = items.findIndex((item) => item.id === id);
+    if (idx >= 0) {
+      const newItems = [...items];
+      if (newItems[idx].quantity === 1) {
+        removeItem(idx);
+      } else {
+        newItems[idx].quantity -= 1;
+        localStorage.setItem('cart', JSON.stringify([...newItems]));
+        setItems([...newItems]);
+        setCount(count - 1);
+      }
+    }
   };
 
   return (
@@ -35,7 +83,9 @@ export const CartContextProvider = (props) => {
       value={{
         count,
         items,
-        addItem
+        addItem,
+        incrementItemQuantity,
+        decrementItemQuantity
       }}
     >
       {props.children}

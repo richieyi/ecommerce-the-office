@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from '@emotion/styled';
 import fetch from 'isomorphic-unfetch';
 import { useStripe } from '@stripe/react-stripe-js';
 import { CartContext } from '../../context/CartContextProvider';
@@ -25,9 +26,31 @@ export async function fetchPostJSON(url: string, data?: {}) {
   }
 }
 
-const CheckoutForm = () => {
+const Container = styled.div`
+  min-width: 300px;
+`;
+
+const ListContainer = styled.ul`
+  list-style: none;
+  padding: unset;
+`;
+
+const LineContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const ListItem = styled.li`
+  margin-bottom: 10px;
+`;
+
+const CartCheckout = () => {
   const stripe = useStripe();
-  const { items } = React.useContext(CartContext);
+  const {
+    items,
+    incrementItemQuantity,
+    decrementItemQuantity
+  } = React.useContext(CartContext);
 
   const renderCart = () => {
     if (items.length === 0) {
@@ -36,11 +59,26 @@ const CheckoutForm = () => {
 
     return items.map((item: any) => {
       return (
-        <div key={item.id}>
-          <p>{item.name}</p>
-          <p>{item.price}</p>
-          <p>{item.quantity}</p>
-        </div>
+        <ListItem key={item.id}>
+          <div>
+            <LineContainer>
+              <span>{item.name}</span>
+              <span>{`$${item.amount} each`}</span>
+            </LineContainer>
+            <LineContainer>
+              <span>
+                {`Qty: ${item.quantity}`}
+                <button onClick={() => decrementItemQuantity(item.id)}>
+                  -
+                </button>
+                <button onClick={() => incrementItemQuantity(item.id)}>
+                  +
+                </button>
+              </span>
+              <span>{`$${item.amount * item.quantity} total`}</span>
+            </LineContainer>
+          </div>
+        </ListItem>
       );
     });
   };
@@ -67,11 +105,11 @@ const CheckoutForm = () => {
   };
 
   return (
-    <>
-      {renderCart()}
-      <button onClick={handleCheckout}>Check Out</button>
-    </>
+    <Container>
+      <ListContainer>{renderCart()}</ListContainer>
+      {items.length > 0 && <button onClick={handleCheckout}>Check Out</button>}
+    </Container>
   );
 };
 
-export default CheckoutForm;
+export default CartCheckout;
