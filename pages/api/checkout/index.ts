@@ -13,8 +13,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     // TODO: Customer info
     // customer: '',
     // customer_email '',
-    // TODO: Success page
-    success_url: `${req.headers.origin}/`,
+    success_url: `${req.headers.origin}/success`,
     cancel_url: `${req.headers.origin}/cart`
   });
 
