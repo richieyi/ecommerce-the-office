@@ -15,13 +15,13 @@
     "jsx": "preserve",
     "baseUrl": "./",
     "paths": {
-      "@components/*": ["./components/*"],
-      "@context/*": ["./context/*"],
-      "@pages/*": ["./pages/*"],
-      "@api/*": ["./api/*"],
-      "@utils/*": ["./utils/*"],
-      "@data/*": ["./data/*"],
-      "@firebase/*": ["./firebase/*"]
+      "@components/*": ["components/*"],
+      "@context/*": ["context/*"],
+      "@pages/*": ["pages/*"],
+      "@api/*": ["api/*"],
+      "@utils/*": ["utils/*"],
+      "@data/*": ["data/*"],
+      "@firebase/*": ["firebase/*"]
     }
   },
   "exclude": ["node_modules"],
