@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import IconButton from '@material-ui/core/IconButton';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Tooltip from '@material-ui/core/Tooltip';
-import { CartContext } from '../../context/CartContextProvider';
-import { formatAmount } from '../../utils/amount-helpers';
+import { CartContext } from '@context/CartContextProvider';
+import { formatAmount } from '@utils/amount-helpers';
 
 const Container = styled.div`
   display: grid;

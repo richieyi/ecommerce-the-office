@@ -7,9 +7,9 @@ import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-import { CartContext } from '../../context/CartContextProvider';
-import { fetchPostJSON } from '../../utils/api-helpers';
-import { formatAmount } from '../../utils/amount-helpers';
+import { CartContext } from '@context/CartContextProvider';
+import { fetchPostJSON } from '@utils/api-helpers';
+import { formatAmount } from '@utils/amount-helpers';
 
 const Container = styled.div`
   margin-top: 50px;

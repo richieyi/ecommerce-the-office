@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { NextPage } from 'next';
-import Layout from '../components/Layout';
+import Layout from '@components/Layout';
 
 const Container = styled.div`
   margin-top: 50px;

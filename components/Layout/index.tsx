@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Head from 'next/head';
-import NavBar from '../NavBar';
+import NavBar from '@components/NavBar';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 

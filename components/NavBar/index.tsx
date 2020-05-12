@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Badge from '@material-ui/core/Badge';
-import { CartContext } from '../../context/CartContextProvider';
+import { CartContext } from '@context/CartContextProvider';
 
 const Nav = styled.nav`
   display: flex;

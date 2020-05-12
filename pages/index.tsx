@@ -1,9 +1,9 @@
 import React from 'react';
 import { NextPage } from 'next';
 import useSWR from 'swr';
-import Layout from '../components/Layout';
-import Products from '../components/Products';
-// import { auth } from '../firebase';
+import Layout from '@components/Layout';
+import Products from '@components/Products';
+// import { auth } from '@firebase';
 
 const fetcher = (url: any) => fetch(url).then((res) => res.json());
 

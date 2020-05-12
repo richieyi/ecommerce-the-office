@@ -1,8 +1,8 @@
 // import React from 'react';
 // import { useRouter } from 'next/router';
-// import { auth } from '../firebase';
+// import { auth } from '@firebase';
 
-// import EmailPasswordForm from '../components/EmailPasswordForm';
+// import EmailPasswordForm from '@components/EmailPasswordForm';
 
 // const SignUp = (): JSX.Element => {
 //   const router = useRouter();
