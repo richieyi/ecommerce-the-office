@@ -4,6 +4,7 @@ import Link from 'next/link';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Badge from '@material-ui/core/Badge';
 import { CartContext } from '@context/CartContextProvider';
+// import { auth } from '@firebase';
 
 const Nav = styled.nav`
   display: flex;
@@ -24,33 +25,9 @@ const Anchor = styled.a`
   }
 `;
 
-interface Props {
-  user?: any;
-  handleLogout?: () => void;
-}
-
-const NavBar = (props: Props): JSX.Element => {
+const NavBar = (): JSX.Element => {
   const { count } = React.useContext(CartContext);
-  // const { user, handleLogout } = props;
 
-  // return (
-  //   <nav>
-  //     {!user && (
-  //       <Link href="/log-in">
-  //         <a>Log In</a>
-  //       </Link>
-  //     )}
-  //     {!user && (
-  //       <Link href="/sign-up">
-  //         <a>Sign Up</a>
-  //       </Link>
-  //     )}
-  //     <Link href="/cart">
-  //       <a>Cart</a>
-  //     </Link>
-  //     {user && <button onClick={handleLogout}>Log Out</button>}
-  //   </nav>
-  // );
   return (
     <Nav>
       <Link href="/">
@@ -70,3 +47,45 @@ const NavBar = (props: Props): JSX.Element => {
 };
 
 export default NavBar;
+
+// interface Props {
+//   user?: any;
+//   handleLogout?: () => void;
+// }
+
+// const [loading, setLoading] = React.useState<boolean>(true);
+// const [user, setUser] = React.useState<any>(null);
+
+// const { user, handleLogout } = props;
+
+// React.useEffect(() => {
+//   auth.onAuthStateChanged((user) => {
+//     setLoading(false);
+//     if (user) {
+//       setUser(user);
+//     }
+//   });
+// }, []);
+
+// const handleLogout = (): void => {
+//   auth.signOut().then(() => setUser(null));
+// };
+
+// return (
+//   <nav>
+//     {!user && (
+//       <Link href="/log-in">
+//         <a>Log In</a>
+//       </Link>
+//     )}
+//     {!user && (
+//       <Link href="/sign-up">
+//         <a>Sign Up</a>
+//       </Link>
+//     )}
+//     <Link href="/cart">
+//       <a>Cart</a>
+//     </Link>
+//     {user && <button onClick={handleLogout}>Log Out</button>}
+//   </nav>
+// );
