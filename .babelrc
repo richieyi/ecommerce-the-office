@@ -1,0 +1,8 @@
+{
+  // feeds into babel transpiler
+  "presets": [
+    "@babel/preset-typescript",
+    "@babel/preset-react",
+    ["@babel/preset-env", { "targets": { "node": true } }]
+  ]
+}

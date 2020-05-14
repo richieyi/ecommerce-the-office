@@ -6,17 +6,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 import { CartContext } from '@context/CartContextProvider';
 import { formatAmount } from '@utils/amount-helpers';
 
-const Container = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 25px;
-  grid-auto-rows: minmax(100px, auto);
-
-  @media only screen and (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-`;
-
 const Img = styled.img`
   max-width: 75%;
 `;

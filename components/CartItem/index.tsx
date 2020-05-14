@@ -4,8 +4,8 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { CartContext } from '@context/CartContextProvider';
-import { formatAmount } from '@utils/amount-helpers';
+import { CartContext } from '../../context/CartContextProvider';
+import { formatAmount } from '../../utils/amount-helpers';
 
 const LineContainer = styled.div`
   display: flex;

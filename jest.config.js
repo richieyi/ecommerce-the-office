@@ -14,8 +14,9 @@ module.exports = {
 
   // Jest transformations -- this adds support for TypeScript
   // using ts-jest
+  preset: 'ts-jest',
   transform: {
-    '^.+\\.tsx?$': 'ts-jest'
+    '^.+\\.(js|jsx|tsx)?$': 'babel-jest'
   },
 
   // Runs special logic, such as cleaning up components
@@ -29,8 +30,22 @@ module.exports = {
   // Test spec file resolution pattern
   // Matches parent folder `__tests__` and filename
   // should contain `test` or `spec`.
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
+  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx|tsx)?$',
+  moduleNameMapper: {
+    '@components/(.*)$': '<rootDir>/components$1',
+    '@context(.*)$': '<rootDir>/context$1',
+    '@pages/(.*)$': '<rootDir>/pages$1',
+    '@api/(.*)$': '<rootDir>/api$1',
+    '@utils/(.*)$': '<rootDir>/utils$1',
+    '@data/(.*)$': '<rootDir>/data$1',
+    '@firebase/(.*)$': '<rootDir>/firebase$1'
+  },
 
   // Module file extensions for importing
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node']
+  // globals: {
+  //   'ts-jest': {
+  //     tsConfig: './tsconfig.test.json'
+  //   }
+  // }
 };
