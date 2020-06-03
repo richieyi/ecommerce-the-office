@@ -1,8 +1,26 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
-const SearchBar = (): JSX.Element => {
-  return <TextField variant="outlined" label="Search" />;
+interface Props {
+  searchValue: string;
+  onChange: (value: string) => void;
+}
+
+const SearchBar = (props: Props): JSX.Element => {
+  const { searchValue, onChange } = props;
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(e.target.value);
+  };
+
+  return (
+    <TextField
+      variant="outlined"
+      label="Search"
+      onChange={handleSearch}
+      value={searchValue}
+    />
+  );
 };
 
 export default SearchBar;

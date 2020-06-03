@@ -19,17 +19,33 @@ interface Props {
 }
 
 const Products = (props: Props): JSX.Element => {
+  const [searchValue, setsearchValue] = React.useState<string>('');
+  const [filteredProducts, setFilteredProducts] = React.useState<any>([]);
   const { products } = props;
 
-  const renderProducts = () => {
-    return products.map((product) => {
+  React.useEffect(() => {
+    if (searchValue !== '') {
+      const filtered = products.filter((product: any) =>
+        product.name.toLowerCase().includes(searchValue.toLowerCase())
+      );
+      setFilteredProducts(filtered);
+    }
+  }, [searchValue]);
+
+  const handleSearch = (value: string): void => {
+    setsearchValue(value);
+  };
+
+  const renderProducts = (): JSX.Element[] => {
+    const productsToUse = searchValue !== '' ? filteredProducts : products;
+    return productsToUse.map((product: any) => {
       return <Product key={product.id} data={product} />;
     });
   };
 
   return (
     <Container>
-      <SearchBar />
+      <SearchBar searchValue={searchValue} onChange={handleSearch} />
       {renderProducts()}
     </Container>
   );
