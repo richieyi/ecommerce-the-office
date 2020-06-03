@@ -4,6 +4,17 @@ import Product, { ProductType } from '@components/Product';
 import SearchBar from '@components/SearchBar';
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const SearchBarContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+`;
+
+const ProductsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 25px;
@@ -45,8 +56,10 @@ const Products = (props: Props): JSX.Element => {
 
   return (
     <Container>
-      <SearchBar searchValue={searchValue} onChange={handleSearch} />
-      {renderProducts()}
+      <SearchBarContainer>
+        <SearchBar searchValue={searchValue} onChange={handleSearch} />
+      </SearchBarContainer>
+      <ProductsContainer>{renderProducts()}</ProductsContainer>
     </Container>
   );
 };
