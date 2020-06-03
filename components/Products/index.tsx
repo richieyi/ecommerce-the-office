@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Product, { ProductType } from '@components/Product';
+import SearchBar from '@components/SearchBar';
 
 const Container = styled.div`
   display: grid;
@@ -17,7 +18,7 @@ interface Props {
   products: ProductType[];
 }
 
-const Products = (props: Props) => {
+const Products = (props: Props): JSX.Element => {
   const { products } = props;
 
   const renderProducts = () => {
@@ -26,7 +27,12 @@ const Products = (props: Props) => {
     });
   };
 
-  return <Container>{renderProducts()}</Container>;
+  return (
+    <Container>
+      <SearchBar />
+      {renderProducts()}
+    </Container>
+  );
 };
 
 export default Products;
