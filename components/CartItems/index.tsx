@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import CartItem from '@components/CartItem';
-import { CartContext } from '@context/CartContextProvider';
+import { CartContext } from '@context/CartContext';
 
 const ListContainer = styled.div`
   max-height: 500px;

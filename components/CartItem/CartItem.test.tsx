@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { CartContextProvider } from '../../context/CartContextProvider';
+import { CartProvider } from '../../context/CartContext';
 import CartItem from './index';
 
 const props = {
@@ -15,9 +15,9 @@ const props = {
 describe('CartItem', () => {
   test('it should render', () => {
     const { getByText } = render(
-      <CartContextProvider>
+      <CartProvider>
         <CartItem {...props} />
-      </CartContextProvider>
+      </CartProvider>
     );
     expect(getByText('Wilderness Michael')).toBeInTheDocument();
   });

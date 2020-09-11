@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { useStripe } from '@stripe/react-stripe-js';
 import Button from '@material-ui/core/Button';
-import { CartContext } from '@context/CartContextProvider';
+import { CartContext } from '../../context/CartContext';
 import { fetchPostJSON } from '@utils/api-helpers';
 import { formatAmount } from '@utils/amount-helpers';
 import CartItems from '@components/CartItems';

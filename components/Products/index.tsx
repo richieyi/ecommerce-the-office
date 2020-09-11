@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { debounce } from 'lodash';
 import Product, { ProductType } from '@components/Product';
 import SearchBar from '@components/SearchBar';
 
@@ -30,16 +31,25 @@ interface Props {
 }
 
 const Products = (props: Props): JSX.Element => {
+  const { products } = props;
   const [searchValue, setsearchValue] = React.useState<string>('');
   const [filteredProducts, setFilteredProducts] = React.useState<any>([]);
-  const { products } = props;
 
-  React.useEffect(() => {
-    if (searchValue !== '') {
+  console.log('search val', searchValue)
+  const filterProducts = () => {
       const filtered = products.filter((product: any) =>
         product.name.toLowerCase().includes(searchValue.toLowerCase())
       );
+      console.log('val', searchValue);
+      console.log('here', filtered)
       setFilteredProducts(filtered);
+  };
+  const delayedQuery = React.useRef(debounce(filterProducts, 500)).current;
+
+  React.useEffect(() => {
+    if (searchValue !== '') {
+      // delayedQuery();
+      // debounce(() => )
     }
   }, [searchValue]);
 
