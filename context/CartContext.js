@@ -1,8 +1,9 @@
 import React from 'react';
 
 export const CartContext = React.createContext();
+export const useCart = () => React.useContext(CartContext);
 
-export const CartProvider = (props) => {
+export const CartProvider = ({ children }) => {
   // Faster to increment count than iterating and
   // adding up quantity each time for cart qty
   const [count, setCount] = React.useState(0);
@@ -89,6 +90,6 @@ export const CartProvider = (props) => {
   };
 
   return (
-    <CartContext.Provider value={value}>{props.children}</CartContext.Provider>
+    <CartContext.Provider value={value}>{children}</CartContext.Provider>
   );
 };

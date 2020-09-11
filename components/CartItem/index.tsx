@@ -4,7 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { CartContext } from '../../context/CartContext';
+import { useCart } from '../../context/CartContext';
 import { formatAmount } from '../../utils/amount-helpers';
 
 const LineContainer = styled.div`
@@ -50,7 +50,7 @@ const CartItem = (props: Props): JSX.Element => {
     incrementItemQuantity,
     decrementItemQuantity,
     removeItem
-  } = React.useContext(CartContext);
+  } = useCart();
 
   return (
     <ListItem>

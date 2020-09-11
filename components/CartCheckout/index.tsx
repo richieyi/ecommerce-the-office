@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { useStripe } from '@stripe/react-stripe-js';
 import Button from '@material-ui/core/Button';
-import { CartContext } from '../../context/CartContext';
+import { useCart } from '../../context/CartContext';
 import { fetchPostJSON } from '@utils/api-helpers';
 import { formatAmount } from '@utils/amount-helpers';
 import CartItems from '@components/CartItems';
@@ -37,7 +37,7 @@ const Total = styled.div`
 
 const CartCheckout = (): JSX.Element => {
   const stripe = useStripe();
-  const { items } = React.useContext(CartContext);
+  const { items } = useCart();
 
   const renderTotal = () => {
     let total = 0;

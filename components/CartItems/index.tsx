@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import CartItem from '@components/CartItem';
-import { CartContext } from '@context/CartContext';
+import { useCart } from '@context/CartContext';
 
 const ListContainer = styled.div`
   max-height: 500px;
@@ -16,7 +16,7 @@ const List = styled.ul`
 `;
 
 const CartItems = (): JSX.Element => {
-  const { items } = React.useContext(CartContext);
+  const { items } = useCart();
 
   const renderCart = () => {
     if (items.length === 0) {

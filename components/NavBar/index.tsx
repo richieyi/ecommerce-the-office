@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Badge from '@material-ui/core/Badge';
-import { CartContext } from '@context/CartContext';
+import { useCart, CartContext } from '@context/CartContext';
 // import { auth } from '@firebase';
 
 const Nav = styled.nav`
@@ -26,7 +26,7 @@ const Anchor = styled.a`
 `;
 
 const NavBar = (): JSX.Element => {
-  const { count } = React.useContext(CartContext);
+  const { count } = useCart();
 
   return (
     <Nav>
